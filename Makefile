@@ -18,3 +18,5 @@ freeze: ## freezes the requirements
 	@.venv/bin/python -m pip freeze > requirements.txt
 	@echo "Requirements frozen"
 
+generate-ssh-key: ## generates a ssh key
+	@ssh-keygen -t rsa -b 4096 -C "hazem-redi"
