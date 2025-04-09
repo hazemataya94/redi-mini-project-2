@@ -14,3 +14,7 @@ init: ## creates a virtual environment
 	@echo "Run the following to start virtual env"
 	@echo "\$$ source .venv/bin/activate"
 	
+freeze: ## freezes the requirements
+	@.venv/bin/python -m pip freeze > requirements.txt
+	@echo "Requirements frozen"
+
