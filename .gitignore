@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+
+# pycharm
+.idea/
+
+# vscode
+.vscode/
+
+# virtual environment
+venv/
+.venv/
+
+# pyenv
+.pyenv/
+
+# mac
+.DS_Store
+
+# windows
+Thumbs.db
+
+# linux
+.netrc
