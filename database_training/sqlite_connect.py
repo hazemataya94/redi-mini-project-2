@@ -8,22 +8,42 @@ class RediSQLiteConnection:
     def close(self):
         self.conn.close()
 
-    def create_table(self):
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS car (id INTEGER PRIMARY KEY AUTOINCREMENT, brand TEXT, color TEXT)")
+    def create_table(self, table_name):
+        self.cursor.execute(f"CREATE TABLE IF NOT EXISTS {table_name} (id INTEGER PRIMARY KEY AUTOINCREMENT, brand TEXT, color TEXT)")
         self.conn.commit()
 
-    def insert_data(self):
-        self.cursor.execute("INSERT INTO car (brand, color) VALUES ('Toyota', 'Red')")
+    def insert_data(self, table_name, brand, color):
+        self.cursor.execute(f"INSERT INTO {table_name} (brand, color) VALUES ('{brand}', '{color}')")
         self.conn.commit()
 
-    def select_data(self):
-        self.cursor.execute("SELECT * FROM car")
+    def select_data(self, table_name):
+        self.cursor.execute(f"SELECT * FROM {table_name}")
         return self.cursor.fetchall()
     
-    def update_data(self):
-        self.cursor.execute("UPDATE car SET color = 'Blue' WHERE brand = 'Toyota'")
+    def update_color_where_brand(self, table_name, brand, color):
+        self.cursor.execute(f"UPDATE {table_name} SET color = '{color}' WHERE brand = '{brand}'")
+        self.conn.commit()
+        
+    def update_brand_where_color(self, table_name, color, brand):
+        self.cursor.execute(f"UPDATE {table_name} SET brand = '{brand}' WHERE color = '{color}'")
         self.conn.commit()
 
-    def delete_data(self):
-        self.cursor.execute("DELETE FROM car WHERE brand = 'Toyota'")
+    def delete_data_brand(self, table_name, brand):
+        self.cursor.execute(f"DELETE FROM {table_name} WHERE brand = '{brand}'")
+        self.conn.commit()
+        
+    def delete_data_color(self, table_name, color):
+        self.cursor.execute(f"DELETE FROM {table_name} WHERE color = '{color}'")
+        self.conn.commit()
+    
+    def delete_data_id(self, table_name, id):
+        self.cursor.execute(f"DELETE FROM {table_name} WHERE id = '{id}'")
+        self.conn.commit()
+        
+    def delete_all_data(self, table_name):
+        self.cursor.execute(f"DELETE FROM {table_name}")
+        self.conn.commit()
+
+    def drop_table(self, table_name):
+        self.cursor.execute(f"DROP TABLE IF EXISTS {table_name}")
         self.conn.commit()
