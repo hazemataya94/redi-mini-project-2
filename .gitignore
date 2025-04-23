@@ -27,3 +27,6 @@ Thumbs.db
 
 # linux
 .netrc
+
+# database
+redi.db
